@@ -40,8 +40,7 @@ class HomePage extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Text(
-                          'Login id:',
+                        child: Text('Login id:',
                           style: TextStyle(fontSize: 30.0),
                         ),
                       ),
@@ -97,8 +96,7 @@ class HomePage extends StatelessWidget {
                       child: Text('New here? Sign up!'),
                       shape: kButtonShape,
                       onPressed: () {
-                        Navigator.pushNamed(context, '/signin');
-                        //TODO: move to sign up page
+                        Navigator.pushNamed(context, '/signup');
                       },
                     ),
                   ),
@@ -124,3 +122,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+

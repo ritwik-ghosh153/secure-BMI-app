@@ -1,5 +1,5 @@
 import 'package:crud_app/homepage.dart';
-import 'package:crud_app/input_page.dart';
+import 'package:crud_app/bmi.dart';
 import 'package:crud_app/signin.dart';
 import 'package:flutter/material.dart';
 import 'homepage.dart';
@@ -15,7 +15,7 @@ class secureBMI extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home': (context) => HomePage(),
-        '/signin': (context) => SignInPage(),
+        '/signup': (context) => SignInPage(),
         '/bmi': (context) => InputPage(),
       },
       theme: ThemeData.dark().copyWith(
