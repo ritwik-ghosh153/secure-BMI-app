@@ -4,9 +4,15 @@ import 'package:crud_app/textInnput.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import 'dart:io' show Directory;
+import 'package:path/path.dart' show join;
+import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart' show getApplicationDocumentsDirectory;
+
+
 class HomePage extends StatelessWidget {
-  final TextInput id = TextInput();
-  final TextInput pass = TextInput();
+  final TextInput id = TextInput(passwordType: false,);
+  final TextInput pass = TextInput(passwordType: true,);
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +74,7 @@ class HomePage extends StatelessWidget {
                             desc: 'All the fields are required!',
                             buttons: [
                               DialogButton(
-                                child: Text(
-                                  "OKAY",
+                                child: Text('OKAY',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20),
                                 ),
@@ -79,8 +84,12 @@ class HomePage extends StatelessWidget {
                             ],
                           ).show();
                         }
-                        //TODO: search database for matching id and pass
-                        //TODO: push to bmi page
+                        else {
+                          //TODO: search database for matching id and pass
+                          Navigator.pop(context);
+                          Navigator.pushNamed(context, '/home');
+                          Navigator.pushNamed(context, '/bmi');
+                        }
                       }),
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),

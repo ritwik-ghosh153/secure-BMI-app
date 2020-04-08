@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class TextInput extends StatefulWidget {
 
+  final bool passwordType;
   final TextEditingController _myController = TextEditingController();
+
+  TextInput({@required this.passwordType});
 
   String getText() {
     return _myController.text;
@@ -35,6 +38,7 @@ class _TextInputState extends State<TextInput> {
         padding: const EdgeInsets.fromLTRB(40,0,40,20),
         child: TextField(
           controller: widget._myController,
+          obscureText: widget.passwordType,
         ),
       ),
     );

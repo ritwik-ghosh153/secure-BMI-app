@@ -5,9 +5,9 @@ import 'textInnput.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class SignInPage extends StatelessWidget {
-  final TextInput id = TextInput();
-  final TextInput pass = TextInput();
-  final TextInput repass= TextInput();
+  final TextInput id = TextInput(passwordType: false,);
+  final TextInput pass = TextInput(passwordType: true,);
+  final TextInput repass= TextInput(passwordType: true,);
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class SignInPage extends StatelessWidget {
                               buttons: [
                                 DialogButton(
                                   child: Text(
-                                    "OKAY",
+                                    'OKAY',
                                     style: TextStyle(color: Colors.white, fontSize: 20),
                                   ),
                                   onPressed: () => Navigator.pop(context),
@@ -104,8 +104,39 @@ class SignInPage extends StatelessWidget {
                               ],
                             ).show();
                           }
-                          //TODO: check database for duplicates, insert new row into database
-                          //TODO: alert that account has been created
+                          else {
+                            //TODO: check database for duplicates, insert new row into database
+                            //TODO: alert that account has been created
+                            Alert(
+                              style: AlertStyle(
+                                backgroundColor: Colors.white,
+                              ),
+                              context: context,
+                              title: 'Success!!',
+                              desc: 'Your account has been created :)',
+                              buttons: [
+                                DialogButton(
+                                  child: Text(
+                                    "OKAY",
+                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                  ),
+                                  onPressed: () { Navigator.pop(context); Navigator.pop(context);},
+                                  width: 120,
+                                ),
+                                DialogButton(
+                                  child: Text(
+                                    "Log in",
+                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                    Navigator.pushNamed(context, '/bmi');},
+                                  width: 120,
+                                )
+                              ],
+                            ).show();
+                          }
                         }),
                   ],
                 ),
