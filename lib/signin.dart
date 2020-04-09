@@ -5,9 +5,9 @@ import 'textInnput.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class SignInPage extends StatelessWidget {
-  final TextInput id = TextInput(passwordType: false,);
-  final TextInput pass = TextInput(passwordType: true,);
-  final TextInput repass= TextInput(passwordType: true,);
+  final TextInput id = TextInput(passwordType: false, placeholder: 'Enter your email',);
+  final TextInput pass = TextInput(passwordType: true, placeholder: 'Enter your assword',);
+  final TextInput repass= TextInput(passwordType: true, placeholder: 'Re-enter your Password',);
 
   @override
   Widget build(BuildContext context) {
@@ -29,35 +29,35 @@ class SignInPage extends StatelessWidget {
                     ),
                     //Login credentials
                     // Login id
-                    Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Text('New login id:', style: TextStyle(fontSize: 30.0),
-                          ),
-                        ),
-                      ],
-                    ),
+//                    Row(
+//                      children: <Widget>[
+//                        Padding(
+//                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+//                          child: Text('New login id:', style: TextStyle(fontSize: 30.0),
+//                          ),
+//                        ),
+//                      ],
+//                    ),
                     id,
                     //Password
-                    Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Text('Set password:', style: TextStyle(fontSize: 30.0)),
-                        ),
-                      ],
-                    ),
+//                    Row(
+//                      children: <Widget>[
+//                        Padding(
+//                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+//                          child: Text('Set password:', style: TextStyle(fontSize: 30.0)),
+//                        ),
+//                      ],
+//                    ),
                     pass,
                     //Re-enter password
-                    Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                          child: Text('Re-enter password:', style: TextStyle(fontSize: 30.0)),
-                        ),
-                      ],
-                    ),
+//                    Row(
+//                      children: <Widget>[
+//                        Padding(
+//                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+//                          child: Text('Re-enter password:', style: TextStyle(fontSize: 30.0)),
+//                        ),
+//                      ],
+//                    ),
                     repass,
                     //Log in button
                     RaisedButton(

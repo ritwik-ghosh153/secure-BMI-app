@@ -4,6 +4,8 @@ import 'package:crud_app/textInnput.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'dart:io' show Directory;
 import 'package:path/path.dart' show join;
 import 'package:sqflite/sqflite.dart';
@@ -11,8 +13,10 @@ import 'package:path_provider/path_provider.dart' show getApplicationDocumentsDi
 
 
 class HomePage extends StatelessWidget {
-  final TextInput id = TextInput(passwordType: false,);
-  final TextInput pass = TextInput(passwordType: true,);
+  final TextInput id = TextInput(passwordType: false, placeholder: 'Enter your email',);
+  final TextInput pass = TextInput(passwordType: true, placeholder: 'Enter your password',);
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -36,27 +40,27 @@ class HomePage extends StatelessWidget {
                   ),
                   //Login credentials
                   // Login id
-                  Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child: Text('Login id:',
-                          style: TextStyle(fontSize: 30.0),
-                        ),
-                      ),
-                    ],
-                  ),
+//                  Row(
+//                    children: <Widget>[
+//                      Padding(
+//                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+//                        child: Text('Login id:',
+//                          style: TextStyle(fontSize: 30.0),
+//                        ),
+//                      ),
+//                    ],
+//                  ),
                   id,
                   //Password
-                  Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                        child:
-                            Text('Password:', style: TextStyle(fontSize: 30.0)),
-                      ),
-                    ],
-                  ),
+//                  Row(
+//                    children: <Widget>[
+//                      Padding(
+//                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+//                        child:
+//                            Text('Password:', style: TextStyle(fontSize: 30.0)),
+//                      ),
+//                    ],
+//                  ),
                   pass,
                   //Log in button
                   RaisedButton(
@@ -84,6 +88,7 @@ class HomePage extends StatelessWidget {
                           ).show();
                         }
                         else {
+
                           //TODO: search database for matching id and pass
                           Navigator.pop(context);
                           Navigator.pushNamed(context, '/home');

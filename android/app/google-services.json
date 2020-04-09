@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "830535385859",
+    "firebase_url": "https://bmi-e5488.firebaseio.com",
+    "project_id": "bmi-e5488",
+    "storage_bucket": "bmi-e5488.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830535385859:android:1e9d1915ec2d30b6a15f36",
+        "android_client_info": {
+          "package_name": "com.ghosh.crud_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830535385859-hv2adrprbb5kmcmnqogt8bkvaj3qtj1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCHRkkxJQMjo19nNHrYhEaOBdAG8MIvIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830535385859-hv2adrprbb5kmcmnqogt8bkvaj3qtj1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
