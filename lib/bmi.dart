@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,11 +23,34 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender;
 
   @override
+  void initState(){
+    super.initState();
+    getCurrentUSer();
+  }
+
+  FirebaseUser _currentUser;
+  final _auth = FirebaseAuth.instance;
+  void getCurrentUSer() async{
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        _currentUser = user;
+      }
+      else
+        Navigator.pop(context);
+    }
+    catch(e){
+      print(e);
+      Navigator.pop(context);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: Text('BMI CALCULATOR', style: kAppBarStyle,),
         leading: null,
           actions: <Widget>[
             IconButton(

@@ -16,7 +16,7 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Sign Up'),
+          title: Text('Sign Up', style: kAppBarStyle,),
         ),
         body: ReusableCard(
           cardChild: Column(
@@ -27,7 +27,7 @@ class SignInPage extends StatelessWidget {
                     Padding(
                       padding:
                           const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 24.0),
-                      child: Text('Let\'s create your account!', style: kLabelTextStyle.copyWith(fontSize: 25),
+                      child: Text('Let\'s create your account!', style: kHeadingStyle.copyWith(fontSize: 30), textAlign: TextAlign.center,
                       ),
                     ),
                     //Login credentials
@@ -113,8 +113,6 @@ class SignInPage extends StatelessWidget {
                                   email: _id.getText(),
                                   password: _pass.getText());
                               if(newUser!=null) {
-                                //TODO: check database for duplicates, insert new row into database
-                                //TODO: alert that account has been created
                                 Alert(
                                   style: AlertStyle(
                                     backgroundColor: Colors.white,
@@ -141,8 +139,9 @@ class SignInPage extends StatelessWidget {
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 20),
                                       ),
-                                      onPressed: () {
+                                      onPressed: () async{
                                         //TODO: sign in
+                                        await _auth.signInWithEmailAndPassword(email: _id.getText(), password: _pass.getText());
                                         Navigator.pop(context);
                                         Navigator.pop(context);
                                         Navigator.pushNamed(context, '/bmi');

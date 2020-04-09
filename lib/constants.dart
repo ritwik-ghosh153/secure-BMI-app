@@ -7,3 +7,5 @@ const kInactiveCardColour = Color(0xFF111328);
 const kBottomContainerColour = Color(0xFFEB1555);
 const kNumberTextStyle = TextStyle(fontSize: 50, fontWeight: FontWeight.w900, );
 final ShapeBorder kButtonShape = RoundedRectangleBorder( borderRadius: BorderRadius.circular(5.0));
+const kHeadingStyle = TextStyle(fontFamily: 'Pacifico', color: Colors.white, fontSize: 35,);
+const kAppBarStyle = TextStyle(fontWeight: FontWeight.w700, fontSize: 25);

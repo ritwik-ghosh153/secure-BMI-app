@@ -6,12 +6,6 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'dart:io' show Directory;
-import 'package:path/path.dart' show join;
-import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart' show getApplicationDocumentsDirectory;
-
-
 class HomePage extends StatelessWidget {
   final TextInput _id = TextInput(passwordType: false, placeholder: 'Enter your email',);
   final TextInput _pass = TextInput(passwordType: true, placeholder: 'Enter your password',);
@@ -22,7 +16,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI Login Page'),
+        title: Text('BMI Login Page', style: kAppBarStyle,),
       ),
       body: ReusableCard(
         cardChild: Column(
@@ -35,7 +29,8 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 24.0),
                     child: Text(
                       'Log in here',
-                      style: kLabelTextStyle.copyWith(fontSize: 25),
+                      style: kHeadingStyle,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   //Login credentials
@@ -93,14 +88,10 @@ class HomePage extends StatelessWidget {
                                 email: _id.getText(),
                                 password: _pass.getText());
                             if(user!=null) {
-                              //TODO: search database for matching id and pass
                               Navigator.pop(context);
                               Navigator.pushNamed(context, '/home');
                               Navigator.pushNamed(context, '/bmi');
                             }
-
-
-
                           }
                           catch(e)
                         {
