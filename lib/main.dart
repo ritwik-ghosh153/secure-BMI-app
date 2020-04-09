@@ -1,5 +1,6 @@
 import 'package:crud_app/homepage.dart';
 import 'package:crud_app/bmi.dart';
+import 'package:crud_app/results.dart';
 import 'package:crud_app/signin.dart';
 import 'package:flutter/material.dart';
 import 'homepage.dart';
@@ -17,6 +18,7 @@ class secureBMI extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/signup': (context) => SignInPage(),
         '/bmi': (context) => InputPage(),
+        '/result': (context) => Results(),
       },
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFF0A0E21),

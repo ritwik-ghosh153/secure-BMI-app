@@ -6,7 +6,7 @@ import 'package:overlay_support/overlay_support.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
-
+import 'buttons.dart';
 
 enum Gender { Male, Female }
 
@@ -226,44 +226,12 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColour,
-            height: kBottomContainerHeight,
-            width: double.infinity,
-            margin: EdgeInsets.only(
-              top: 10.0,
-            ),
-            child: Center(
-              child: Text(
-                'CALCULATE BMI',
-                style: TextStyle(color: Colors.white, fontSize: 23),
-              ),
-            ),
-          )
+          BottomButton(title: 'CALCULATE BMI',
+              ontap: (){
+            Navigator.pushNamed(context, '/result');
+          },)
         ],
       ),
-    );
-  }
-}
-
-
-class RoundIconButton extends StatelessWidget {
-  final IconData icon;
-  final Function onPressed;
-  RoundIconButton({this.icon, this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      shape: CircleBorder(),
-      onPressed: onPressed,
-      child: Icon(icon),
-      elevation: 0.0,
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      fillColor: Color(0xFF4C4F5E) ,
     );
   }
 }
