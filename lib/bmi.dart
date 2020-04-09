@@ -1,3 +1,5 @@
+import 'package:crud_app/bmiCalculator.dart';
+import 'package:crud_app/results.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -228,7 +230,14 @@ class _InputPageState extends State<InputPage> {
           ),
           BottomButton(title: 'CALCULATE BMI',
               ontap: (){
-            Navigator.pushNamed(context, '/result');
+            BmiCalculator calc= BmiCalculator(height: this.height, weight: this.weight);
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) => Results(
+                bmi:calc.calculate(),
+                result: calc.getResult(),
+                interpretation: calc.getInterpretation(),
+              )
+            ),);
           },)
         ],
       ),

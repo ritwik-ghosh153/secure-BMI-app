@@ -2,8 +2,17 @@ import 'package:crud_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'reusable_card.dart';
 import 'buttons.dart';
+import 'bmiCalculator.dart';
+
 
 class Results extends StatelessWidget {
+
+  final String bmi;
+  final String result;
+  final String interpretation;
+
+  Results({this.bmi, this.result, this.interpretation});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +42,9 @@ class Results extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                   ),
-                  Text('NORMAL', style: TextStyle(color: Color(0xFF24D876), fontSize: 24, fontWeight: FontWeight.bold),),
-                  Text('18.3', style: TextStyle(fontSize: 100, fontWeight: FontWeight.bold),),
-                  Text('Interpretation', style: TextStyle(fontSize: 22),),
+                  Text(result, style: TextStyle(color: Color(0xFF24D876), fontSize: 24, fontWeight: FontWeight.bold),),
+                  Text(bmi, style: TextStyle(fontSize: 100, fontWeight: FontWeight.bold),),
+                  Text(interpretation, style: TextStyle(fontSize: 22),),
 
                 ],
               ),
