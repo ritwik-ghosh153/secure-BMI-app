@@ -3,11 +3,14 @@ import 'reusable_card.dart';
 import 'constants.dart';
 import 'textInnput.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInPage extends StatelessWidget {
-  final TextInput id = TextInput(passwordType: false, placeholder: 'Enter your email',);
-  final TextInput pass = TextInput(passwordType: true, placeholder: 'Enter your assword',);
-  final TextInput repass= TextInput(passwordType: true, placeholder: 'Re-enter your Password',);
+  final TextInput _id = TextInput(passwordType: false, placeholder: 'Enter your email',);
+  final TextInput _pass = TextInput(passwordType: true, placeholder: 'Enter your assword',);
+  final TextInput _repass= TextInput(passwordType: true, placeholder: 'Re-enter your Password',);
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class SignInPage extends StatelessWidget {
 //                        ),
 //                      ],
 //                    ),
-                    id,
+                    _id,
                     //Password
 //                    Row(
 //                      children: <Widget>[
@@ -48,7 +51,7 @@ class SignInPage extends StatelessWidget {
 //                        ),
 //                      ],
 //                    ),
-                    pass,
+                    _pass,
                     //Re-enter password
 //                    Row(
 //                      children: <Widget>[
@@ -58,13 +61,13 @@ class SignInPage extends StatelessWidget {
 //                        ),
 //                      ],
 //                    ),
-                    repass,
+                    _repass,
                     //Log in button
                     RaisedButton(
                         shape: kButtonShape,
                         child: Text('Create account'),
-                        onPressed: () {
-                          if(id.getText()=='' || pass.getText()=='' || repass==''){
+                        onPressed: () async{
+                          if(_id.getText()=='' || _pass.getText()=='' || _repass==''){
                             Alert(
                               style: AlertStyle(
                                 backgroundColor: Colors.white,
@@ -84,7 +87,7 @@ class SignInPage extends StatelessWidget {
                               ],
                             ).show();
                           }
-                          else if(pass.getText()!=repass.getText()){
+                          else if(_pass.getText()!=_repass.getText()){
                             Alert(
                               style: AlertStyle(
                                 backgroundColor: Colors.white,
@@ -105,37 +108,122 @@ class SignInPage extends StatelessWidget {
                             ).show();
                           }
                           else {
-                            //TODO: check database for duplicates, insert new row into database
-                            //TODO: alert that account has been created
-                            Alert(
-                              style: AlertStyle(
-                                backgroundColor: Colors.white,
-                              ),
-                              context: context,
-                              title: 'Success!!',
-                              desc: 'Your account has been created :)',
-                              buttons: [
-                                DialogButton(
-                                  child: Text(
-                                    "OKAY",
-                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                            try {
+                              final newUser = await _auth.createUserWithEmailAndPassword(
+                                  email: _id.getText(),
+                                  password: _pass.getText());
+                              if(newUser!=null) {
+                                //TODO: check database for duplicates, insert new row into database
+                                //TODO: alert that account has been created
+                                Alert(
+                                  style: AlertStyle(
+                                    backgroundColor: Colors.white,
                                   ),
-                                  onPressed: () { Navigator.pop(context); Navigator.pop(context);},
-                                  width: 120,
-                                ),
-                                DialogButton(
-                                  child: Text(
-                                    "Log in",
-                                    style: TextStyle(color: Colors.white, fontSize: 20),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                    Navigator.pushNamed(context, '/bmi');},
-                                  width: 120,
-                                )
-                              ],
-                            ).show();
+                                  context: context,
+                                  title: 'Success!!',
+                                  desc: 'Your account has been created :)',
+                                  buttons: [
+                                    DialogButton(
+                                      child: Text(
+                                        "OKAY",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                      width: 120,
+                                    ),
+                                    DialogButton(
+                                      child: Text(
+                                        "Log in",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
+                                      onPressed: () {
+                                        //TODO: sign in
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                        Navigator.pushNamed(context, '/bmi');
+                                      },
+                                      width: 120,
+                                    )
+                                  ],
+                                ).show();
+                              }
+                            }
+                            catch(e){
+                              //TODO: user already exists
+                              //TODO: bad email
+                              //TODO: small password
+                              switch(e.code){
+                                case 'ERROR_EMAIL_ALREADY_IN_USE':
+                                  Alert(
+                                    style: AlertStyle(
+                                      backgroundColor: Colors.white,
+                                    ),
+                                    context: context,
+                                    title: 'You\'ve been here before!!',
+                                    desc: 'User already exists. Try logging in instead?',
+                                    buttons: [
+                                      DialogButton(
+                                        child: Text(
+                                          "OKAY",
+                                          style: TextStyle(color: Colors.white, fontSize: 20),
+                                        ),
+                                        onPressed: () { Navigator.pop(context); Navigator.pop(context);},
+                                        width: 120,
+                                      )
+                                    ],
+                                  ).show();
+                                  break;
+
+                                case 'ERROR_INVALID_EMAIL':
+                                  Alert(
+                                    style: AlertStyle(
+                                      backgroundColor: Colors.white,
+                                    ),
+                                    context: context,
+                                    title: 'Incorrect email!!',
+                                    desc: 'Try checking the email entered :)',
+                                    buttons: [
+                                      DialogButton(
+                                        child: Text(
+                                          "OKAY",
+                                          style: TextStyle(color: Colors.white, fontSize: 20),
+                                        ),
+                                        onPressed: () { Navigator.pop(context);},
+                                        width: 120,
+                                      )
+                                    ],
+                                  ).show();
+                                  break;
+
+                                case 'ERROR_WEAK_PASSWORD':
+                                  Alert(
+                                    style: AlertStyle(
+                                      backgroundColor: Colors.white,
+                                    ),
+                                    context: context,
+                                    title: 'Weak password!!',
+                                    desc: 'Try with a longer password, password should be greater than 6 characters',
+                                    buttons: [
+                                      DialogButton(
+                                        child: Text(
+                                          "OKAY",
+                                          style: TextStyle(color: Colors.white, fontSize: 20),
+                                        ),
+                                        onPressed: () { Navigator.pop(context);},
+                                        width: 120,
+                                      )
+                                    ],
+                                  ).show();
+                                  break;
+                              }
+                              print(e);
+                              print(e.hashCode);
+                            }
                           }
                         }),
                   ],

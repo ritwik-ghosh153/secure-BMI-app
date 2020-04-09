@@ -13,8 +13,8 @@ import 'package:path_provider/path_provider.dart' show getApplicationDocumentsDi
 
 
 class HomePage extends StatelessWidget {
-  final TextInput id = TextInput(passwordType: false, placeholder: 'Enter your email',);
-  final TextInput pass = TextInput(passwordType: true, placeholder: 'Enter your password',);
+  final TextInput _id = TextInput(passwordType: false, placeholder: 'Enter your email',);
+  final TextInput _pass = TextInput(passwordType: true, placeholder: 'Enter your password',);
 
   final _auth = FirebaseAuth.instance;
 
@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
 //                      ),
 //                    ],
 //                  ),
-                  id,
+                  _id,
                   //Password
 //                  Row(
 //                    children: <Widget>[
@@ -61,13 +61,13 @@ class HomePage extends StatelessWidget {
 //                      ),
 //                    ],
 //                  ),
-                  pass,
+                  _pass,
                   //Log in button
                   RaisedButton(
                       shape: kButtonShape,
                       child: Text('Log in'),
-                      onPressed: () {
-                        if (id.getText() == '' || pass.getText() == '') {
+                      onPressed: () async{
+                        if (_id.getText() == '' || _pass.getText() == '') {
                           Alert(
                             style: AlertStyle(
                               backgroundColor: Colors.white,
@@ -88,11 +88,41 @@ class HomePage extends StatelessWidget {
                           ).show();
                         }
                         else {
+                          try {
+                            final user = await _auth.signInWithEmailAndPassword(
+                                email: _id.getText(),
+                                password: _pass.getText());
+                            if(user!=null) {
+                              //TODO: search database for matching id and pass
+                              Navigator.pop(context);
+                              Navigator.pushNamed(context, '/home');
+                              Navigator.pushNamed(context, '/bmi');
+                            }
 
-                          //TODO: search database for matching id and pass
-                          Navigator.pop(context);
-                          Navigator.pushNamed(context, '/home');
-                          Navigator.pushNamed(context, '/bmi');
+
+
+                          }
+                          catch(e)
+                        {
+                          Alert(
+                            style: AlertStyle(
+                              backgroundColor: Colors.white,
+                            ),
+                            context: context,
+                            title: 'Login failed!!',
+                            desc: 'Invalid username or password :(',
+                            buttons: [
+                              DialogButton(
+                                child: Text('OKAY',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20),
+                                ),
+                                onPressed: () => Navigator.pop(context),
+                                width: 120,
+                              )
+                            ],
+                          ).show();
+                        }
                         }
                       }),
                   Padding(

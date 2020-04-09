@@ -27,6 +27,12 @@ class _InputPageState extends State<InputPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
+        leading: null,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.close, color: Colors.white,),
+            )
+          ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
