@@ -276,6 +276,11 @@ class _InputPageState extends State<InputPage> {
                 result: calc.getResult(),
                 interpretation: calc.getInterpretation(),
                 previousBmi: _previousBmi,
+                //deletion
+                onpress: (){
+                  _firestore.collection('bmis').document(_currentUser.email).delete();
+                  Navigator.pop(context);
+                },
               )
             ),);
           },)

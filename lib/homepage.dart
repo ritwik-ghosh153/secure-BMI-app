@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
   final TextInput _id = TextInput(passwordType: false, placeholder: 'Enter your email',);
   final TextInput _pass = TextInput(passwordType: true, placeholder: 'Enter your password',);
 
+
   final _auth = FirebaseAuth.instance;
   FirebaseUser _currentUser;
 
@@ -28,6 +29,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _idcontroller =_id.getController();
+    TextEditingController _passcontroller = _pass.getController();
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI Login Page', style: kAppBarStyle,),
@@ -84,8 +87,8 @@ class HomePage extends StatelessWidget {
                                 email: _id.getText(),
                                 password: _pass.getText());
                             if(user!=null) {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(context, '/home');
+                              _idcontroller.clear();
+                              _passcontroller.clear();
                               await getCurrentUser();
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) => InputPage(id: _currentUser.email)

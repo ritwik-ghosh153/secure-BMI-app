@@ -11,9 +11,10 @@ class Results extends StatelessWidget {
   final String result;
   final String interpretation;
   final String previousBmi;
+  final Function onpress;
 
 
-  Results({this.bmi, this.result, this.interpretation, this.previousBmi});
+  Results({this.bmi, this.result, this.interpretation, this.previousBmi, this.onpress});
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +61,12 @@ class Results extends StatelessWidget {
                   Text(bmi, style: TextStyle(fontSize: 100, fontWeight: FontWeight.bold),),
                   Text(interpretation, style: TextStyle(fontSize: 22),),
 
+              RaisedButton(
+                color: kBottomContainerColour,
+                shape: kButtonShape,
+                child: Text('Do not consider this output'),
+                onPressed: onpress,
+              ),
                 ],
               ),
             ),
