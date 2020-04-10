@@ -4,6 +4,7 @@ import 'constants.dart';
 import 'textInnput.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'bmi.dart';
 
 class SignInPage extends StatelessWidget {
   final TextInput _id = TextInput(passwordType: false, placeholder: 'Enter your email',);
@@ -11,6 +12,19 @@ class SignInPage extends StatelessWidget {
   final TextInput _repass= TextInput(passwordType: true, placeholder: 'Re-enter your Password',);
 
   final _auth = FirebaseAuth.instance;
+  FirebaseUser _currentUser;
+
+  void getCurrentUser() async{
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        _currentUser = user;
+      }
+    }
+    catch(e){
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,10 +130,34 @@ class SignInPage extends StatelessWidget {
                                             color: Colors.blue[900], fontSize: 20),
                                       ),
                                       onPressed: () async{
-                                        await _auth.signInWithEmailAndPassword(email: _id.getText(), password: _pass.getText());
-                                        Navigator.pop(context);
-                                        Navigator.pop(context);
-                                        Navigator.pushNamed(context, '/bmi');
+                                        try {
+                                          final user = await _auth
+                                              .signInWithEmailAndPassword(
+                                              email: _id.getText(),
+                                              password: _pass.getText());
+                                          if (user != null) {
+                                            await getCurrentUser();
+                                            Navigator.pop(context);
+                                            Navigator.pop(context);
+                                            Navigator.push(
+                                                context, MaterialPageRoute(
+                                                builder: (context) =>
+                                                    InputPage(
+                                                        id: _currentUser.email)
+
+                                            ));
+                                          }
+                                        }
+                                        catch(e)
+                                        {
+                                          Alert(
+                                            style: AlertStyle(
+                                              backgroundColor: Colors.white,
+                                            ),
+                                            context: context,
+                                            title: 'Login failed!!',
+                                          ).show();
+                                        }
                                       },
                                       width: 120,
                                     )
