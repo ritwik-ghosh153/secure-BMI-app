@@ -10,9 +10,10 @@ class Results extends StatelessWidget {
   final String bmi;
   final String result;
   final String interpretation;
+  final String previousBmi;
 
 
-  Results({this.bmi, this.result, this.interpretation});
+  Results({this.bmi, this.result, this.interpretation, this.previousBmi});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,18 @@ class Results extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 25.0),
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                width: 10,
+              ),
+                Text('Previous BMI: ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,letterSpacing: 2),),
+                Text(previousBmi, style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, letterSpacing: 2),),
+              ],
+            ),
+          ),
           Expanded(
             child: Row(
               children: <Widget>[

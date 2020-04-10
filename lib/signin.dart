@@ -153,9 +153,6 @@ class SignInPage extends StatelessWidget {
                               }
                             }
                             catch(e){
-                              //TODO: user already exists
-                              //TODO: bad email
-                              //TODO: small password
                               switch(e.code){
                                 case 'ERROR_EMAIL_ALREADY_IN_USE':
                                   Alert(

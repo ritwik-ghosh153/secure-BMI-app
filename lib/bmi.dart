@@ -38,6 +38,7 @@ class _InputPageState extends State<InputPage> {
   FirebaseUser _currentUser;
   final _auth = FirebaseAuth.instance;
 
+
   void getCurrentUser() async{
     try {
       final user = await _auth.currentUser();
@@ -60,13 +61,11 @@ class _InputPageState extends State<InputPage> {
         if(bmi.data['user']==_currentUser.email) {
           hasPrevious=true;
           _previousBmi=bmi.data['bmi'];
-          print(_previousBmi);
           break;
         }
       }
     if(!hasPrevious){
       _previousBmi='You have not calculated your BMI earlier';
-      print(_previousBmi);
     }
   }
 
@@ -82,7 +81,6 @@ class _InputPageState extends State<InputPage> {
             IconButton(
               icon: Icon(Icons.close, color: Colors.white,),
               onPressed: (){
-                fetch();
                 _auth.signOut();
                 Navigator.pop(context);
               },
@@ -92,6 +90,7 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          Text('Logged in as '+_currentUser.email, textAlign: TextAlign.center,),
           Expanded(
             child: Row(
               children: <Widget>[
@@ -271,6 +270,7 @@ class _InputPageState extends State<InputPage> {
                 bmi:currentBmi,
                 result: calc.getResult(),
                 interpretation: calc.getInterpretation(),
+                previousBmi: _previousBmi,
               )
             ),);
           },)
