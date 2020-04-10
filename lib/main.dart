@@ -13,6 +13,7 @@ class SecureBMI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      ///creating routes to navigate between screens
       initialRoute: '/home',
       routes: {
         '/home': (context) => HomePage(),
@@ -20,6 +21,7 @@ class SecureBMI extends StatelessWidget {
         '/bmi': (context) => InputPage(),
         '/result': (context) => Results(),
       },
+      ///using  default theme and changing some parameters of it
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFF0A0E21),
         scaffoldBackgroundColor: Color(0xFF0A0E21),

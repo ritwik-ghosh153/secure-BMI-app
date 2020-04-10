@@ -6,14 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+///shows us the login page
 class HomePage extends StatelessWidget {
+  ///for taking inputs
   final TextInput _id = TextInput(passwordType: false, placeholder: 'Enter your email',);
   final TextInput _pass = TextInput(passwordType: true, placeholder: 'Enter your password',);
 
-
+  ///firebase auth instance for authentication of user
   final _auth = FirebaseAuth.instance;
   FirebaseUser _currentUser;
 
+  ///gets the user who just logged in
   void getCurrentUser() async{
     try {
       final user = await _auth.currentUser();
@@ -26,7 +29,7 @@ class HomePage extends StatelessWidget {
     }
   }
 
-
+/// building the widget tree
   @override
   Widget build(BuildContext context) {
     TextEditingController _idcontroller =_id.getController();
@@ -50,18 +53,19 @@ class HomePage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  //Login credentials
-                  // Login id
+                  ///Login credentials
+                  /// Login id
                   _id,
-                  //Password
+                  ///Password
                   _pass,
-                  //Log in button
+                  ///Log in button
                   RaisedButton(
                     color: kRoundedButtonColour,
                       shape: kButtonShape,
                       child: Text('Log in'),
                       onPressed: () async{
                         if (_id.getText() == '' || _pass.getText() == '') {
+                          /// pop up if not all fields are filled
                           Alert(
                             style: AlertStyle(
                               backgroundColor: Colors.white,
@@ -83,6 +87,7 @@ class HomePage extends StatelessWidget {
                         }
                         else {
                           try {
+                            ///signing in
                             final user = await _auth.signInWithEmailAndPassword(
                                 email: _id.getText(),
                                 password: _pass.getText());
@@ -98,6 +103,7 @@ class HomePage extends StatelessWidget {
                           }
                           catch(e)
                         {
+                          ///alert if login fails due to invalid credentials
                           Alert(
                             style: AlertStyle(
                               backgroundColor: Colors.white,
@@ -119,6 +125,7 @@ class HomePage extends StatelessWidget {
                         }
                         }
                       }),
+                  ///sign up button
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
                     child: RaisedButton(

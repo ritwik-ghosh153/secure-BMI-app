@@ -16,6 +16,7 @@ enum Gender { Male, Female }
 class InputPage extends StatefulWidget {
 
   final String id;
+  ///constructor
   InputPage({this.id});
 
 
@@ -25,6 +26,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
 
+  ///class variables
   int height=180;
   int weight=60;
   int age=20;
@@ -73,6 +75,7 @@ class _InputPageState extends State<InputPage> {
       _previousBmi='No BMI calculated earlier';
     }
   }
+  ///widgeg tre
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +113,7 @@ class _InputPageState extends State<InputPage> {
               IconButton(
                 icon: Icon(Icons.close, color: Colors.white,),
                 onPressed: (){
+                  ///logout button
                   Alert(
                     style: AlertStyle(
                       backgroundColor: Colors.white,

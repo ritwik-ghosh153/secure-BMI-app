@@ -7,6 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'bmi.dart';
 
 class SignInPage extends StatelessWidget {
+
+  ///class variables
   final TextInput _id = TextInput(passwordType: false, placeholder: 'Enter your email',);
   final TextInput _pass = TextInput(passwordType: true, placeholder: 'Enter your assword',);
   final TextInput _repass= TextInput(passwordType: true, placeholder: 'Re-enter your Password',);
@@ -14,6 +16,7 @@ class SignInPage extends StatelessWidget {
   final _auth = FirebaseAuth.instance;
   FirebaseUser _currentUser;
 
+  ///method to fetch current user and wait until there is response from firebase cloud
   void getCurrentUser() async{
     try {
       final user = await _auth.currentUser();
@@ -26,6 +29,7 @@ class SignInPage extends StatelessWidget {
     }
   }
 
+  ///Defining the widget tree
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +62,7 @@ class SignInPage extends StatelessWidget {
                         child: Text('Create account'),
                         onPressed: () async{
                           if(_id.getText()=='' || _pass.getText()=='' || _repass.getText()==''){
+                            ///Alert if fields are empty
                             Alert(
                               style: AlertStyle(
                                 backgroundColor: Colors.white,
@@ -78,6 +83,7 @@ class SignInPage extends StatelessWidget {
                             ).show();
                           }
                           else if(_pass.getText()!=_repass.getText()){
+                            ///Alert if passwords do not match
                             Alert(
                               style: AlertStyle(
                                 backgroundColor: Colors.white,
@@ -103,6 +109,7 @@ class SignInPage extends StatelessWidget {
                                   email: _id.getText(),
                                   password: _pass.getText());
                               if(newUser!=null) {
+                                ///pop up to say we have registered
                                 Alert(
                                   style: AlertStyle(
                                     backgroundColor: Colors.white,
@@ -111,7 +118,7 @@ class SignInPage extends StatelessWidget {
                                   title: 'Success!!',
                                   desc: 'Your account has been created :)',
                                   buttons: [
-                                    DialogButton(
+                                    DialogButton(///Takes back to home screen
                                       child: Text(
                                         "OKAY",
                                         style: TextStyle(
@@ -123,7 +130,7 @@ class SignInPage extends StatelessWidget {
                                       },
                                       width: 120,
                                     ),
-                                    DialogButton(
+                                    DialogButton(///Takes to BMI calculator
                                       child: Text(
                                         "Log in",
                                         style: TextStyle(
@@ -150,6 +157,7 @@ class SignInPage extends StatelessWidget {
                                         }
                                         catch(e)
                                         {
+                                          ///pop up if sign in fails due to internet
                                           Alert(
                                             style: AlertStyle(
                                               backgroundColor: Colors.white,
@@ -166,8 +174,9 @@ class SignInPage extends StatelessWidget {
                                 ).show();
                               }
                             }
-                            catch(e){
+                            catch(e){///Catching and dealing with various errors thrown by firebase
                               switch(e.code){
+                                ///previous user
                                 case 'ERROR_EMAIL_ALREADY_IN_USE':
                                   Alert(
                                     style: AlertStyle(
@@ -188,7 +197,7 @@ class SignInPage extends StatelessWidget {
                                     ],
                                   ).show();
                                   break;
-
+                                  ///not email
                                 case 'ERROR_INVALID_EMAIL':
                                   Alert(
                                     style: AlertStyle(
@@ -209,7 +218,7 @@ class SignInPage extends StatelessWidget {
                                     ],
                                   ).show();
                                   break;
-
+                                  ///weak password used
                                 case 'ERROR_WEAK_PASSWORD':
                                   Alert(
                                     style: AlertStyle(
