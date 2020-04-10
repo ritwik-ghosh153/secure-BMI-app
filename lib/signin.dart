@@ -156,6 +156,7 @@ class SignInPage extends StatelessWidget {
                                             ),
                                             context: context,
                                             title: 'Login failed!!',
+                                            desc: 'Check your internet connection',
                                           ).show();
                                         }
                                       },
