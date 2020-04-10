@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'homepage.dart';
 
 void main() {
-  runApp((secureBMI()));
+  runApp((SecureBMI()));
 }
 
-class secureBMI extends StatelessWidget {
+class SecureBMI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

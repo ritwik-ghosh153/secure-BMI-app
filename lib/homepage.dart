@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
                               DialogButton(
                                 child: Text('OKAY',
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
+                                      color: Colors.blue[900], fontSize: 20),
                                 ),
                                 onPressed: () => Navigator.pop(context),
                                 width: 120,
@@ -109,7 +109,7 @@ class HomePage extends StatelessWidget {
                               DialogButton(
                                 child: Text('OKAY',
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
+                                      color: Colors.blue[900], fontSize: 20),
                                 ),
                                 onPressed: () => Navigator.pop(context),
                                 width: 120,

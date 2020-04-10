@@ -32,7 +32,7 @@ class Results extends StatelessWidget {
                 width: 10,
               ),
                 Text('Previous BMI: ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,letterSpacing: 2),),
-                Text(previousBmi, style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal, letterSpacing: 2),),
+                Text(previousBmi, style: TextStyle(fontSize: previousBmi=='No BMI calculated earlier'? 14:18, fontWeight: FontWeight.normal, letterSpacing: 2),),
               ],
             ),
           ),

@@ -55,7 +55,7 @@ class SignInPage extends StatelessWidget {
                                 DialogButton(
                                   child: Text(
                                     'OKAY',
-                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                    style: TextStyle(color: Colors.blue[900], fontSize: 20),
                                   ),
                                   onPressed: () => Navigator.pop(context),
                                   width: 120,
@@ -75,7 +75,7 @@ class SignInPage extends StatelessWidget {
                                 DialogButton(
                                   child: Text(
                                     "OKAY",
-                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                    style: TextStyle(color: Colors.blue[900], fontSize: 20),
                                   ),
                                   onPressed: () { Navigator.pop(context);},
                                   width: 120,
@@ -101,7 +101,7 @@ class SignInPage extends StatelessWidget {
                                       child: Text(
                                         "OKAY",
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 20),
+                                            color: Colors.blue[900], fontSize: 20),
                                       ),
                                       onPressed: () {
                                         Navigator.pop(context);
@@ -113,7 +113,7 @@ class SignInPage extends StatelessWidget {
                                       child: Text(
                                         "Log in",
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 20),
+                                            color: Colors.blue[900], fontSize: 20),
                                       ),
                                       onPressed: () async{
                                         await _auth.signInWithEmailAndPassword(email: _id.getText(), password: _pass.getText());
@@ -141,7 +141,7 @@ class SignInPage extends StatelessWidget {
                                       DialogButton(
                                         child: Text(
                                           "OKAY",
-                                          style: TextStyle(color: Colors.white, fontSize: 20),
+                                          style: TextStyle(color: Colors.blue[900], fontSize: 20),
                                         ),
                                         onPressed: () { Navigator.pop(context); Navigator.pop(context);},
                                         width: 120,
@@ -162,7 +162,7 @@ class SignInPage extends StatelessWidget {
                                       DialogButton(
                                         child: Text(
                                           "OKAY",
-                                          style: TextStyle(color: Colors.white, fontSize: 20),
+                                          style: TextStyle(color: Colors.blue[900], fontSize: 20),
                                         ),
                                         onPressed: () { Navigator.pop(context);},
                                         width: 120,
@@ -183,7 +183,7 @@ class SignInPage extends StatelessWidget {
                                       DialogButton(
                                         child: Text(
                                           "OKAY",
-                                          style: TextStyle(color: Colors.white, fontSize: 20),
+                                          style: TextStyle(color: Colors.blue[900], fontSize: 20),
                                         ),
                                         onPressed: () { Navigator.pop(context);},
                                         width: 120,
