@@ -1,4 +1,3 @@
-import 'package:crud_app/delete.dart';
 import 'package:crud_app/homepage.dart';
 import 'package:crud_app/bmi.dart';
 import 'package:crud_app/results.dart';
