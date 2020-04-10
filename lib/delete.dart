@@ -5,7 +5,7 @@ import 'textInnput.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class SignInPage extends StatelessWidget {
+class Delete extends StatelessWidget {
   final TextInput _id = TextInput(passwordType: false, placeholder: 'Enter your email',);
   final TextInput _pass = TextInput(passwordType: true, placeholder: 'Enter your assword',);
   final TextInput _repass= TextInput(passwordType: true, placeholder: 'Re-enter your Password',);
@@ -26,8 +26,8 @@ class SignInPage extends StatelessWidget {
                   children: <Widget>[
                     Padding(
                       padding:
-                          const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 24.0),
-                      child: Text('Let\'s create your account!', style: kHeadingStyle.copyWith(fontSize: 30), textAlign: TextAlign.center,
+                      const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 24.0),
+                      child: Text('This will delete your account permanently!', style: kHeadingStyle.copyWith(fontSize: 30), textAlign: TextAlign.center,
                       ),
                     ),
                     //Login credentials
@@ -39,7 +39,7 @@ class SignInPage extends StatelessWidget {
                     _repass,
                     //Log in button
                     RaisedButton(
-                      color: kRoundedButtonColour,
+                      color: Colors.red,
                         shape: kButtonShape,
                         child: Text('Create account'),
                         onPressed: () async{
@@ -77,7 +77,7 @@ class SignInPage extends StatelessWidget {
                                     "OKAY",
                                     style: TextStyle(color: Colors.white, fontSize: 20),
                                   ),
-                                  onPressed: () { Navigator.pop(context);},
+                                  onPressed: () { Navigator.pop(context); Navigator.pop(context);},
                                   width: 120,
                                 )
                               ],
@@ -116,6 +116,7 @@ class SignInPage extends StatelessWidget {
                                             color: Colors.white, fontSize: 20),
                                       ),
                                       onPressed: () async{
+                                        //TODO: sign in
                                         await _auth.signInWithEmailAndPassword(email: _id.getText(), password: _pass.getText());
                                         Navigator.pop(context);
                                         Navigator.pop(context);

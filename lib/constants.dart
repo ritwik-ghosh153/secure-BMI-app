@@ -9,3 +9,4 @@ const kNumberTextStyle = TextStyle(fontSize: 50, fontWeight: FontWeight.w900, );
 final ShapeBorder kButtonShape = RoundedRectangleBorder( borderRadius: BorderRadius.circular(5.0));
 const kHeadingStyle = TextStyle(fontFamily: 'Pacifico', color: Colors.white, fontSize: 35,);
 const kAppBarStyle = TextStyle(fontWeight: FontWeight.w700, fontSize: 25);
+const kRoundedButtonColour = Color(0xFF4050cf);

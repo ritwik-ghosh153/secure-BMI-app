@@ -90,7 +90,7 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text('Logged in as '+_currentUser.email, textAlign: TextAlign.center,),
+//          Text('Logged in as '+_currentUser.email, textAlign: TextAlign.center,),
           Expanded(
             child: Row(
               children: <Widget>[

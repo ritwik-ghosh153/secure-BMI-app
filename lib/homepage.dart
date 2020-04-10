@@ -34,30 +34,12 @@ class HomePage extends StatelessWidget {
                   ),
                   //Login credentials
                   // Login id
-//                  Row(
-//                    children: <Widget>[
-//                      Padding(
-//                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-//                        child: Text('Login id:',
-//                          style: TextStyle(fontSize: 30.0),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
                   _id,
                   //Password
-//                  Row(
-//                    children: <Widget>[
-//                      Padding(
-//                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
-//                        child:
-//                            Text('Password:', style: TextStyle(fontSize: 30.0)),
-//                      ),
-//                    ],
-//                  ),
                   _pass,
                   //Log in button
                   RaisedButton(
+                    color: kRoundedButtonColour,
                       shape: kButtonShape,
                       child: Text('Log in'),
                       onPressed: () async{
@@ -118,6 +100,7 @@ class HomePage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
                     child: RaisedButton(
+                      color: kRoundedButtonColour,
                       child: Text('New here? Sign up!'),
                       shape: kButtonShape,
                       onPressed: () {
@@ -128,18 +111,18 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: Center(
-                child: RaisedButton(
-                  child: Text('Delete account'),
-                  shape: kButtonShape,
-                  color: Colors.red,
-                  onPressed: () {
-                    //TODO: move to delete account page up page
-                  },
-                ),
-              ),
-            ),
+//            Expanded(
+//              child: Center(
+//                child: RaisedButton(
+//                  child: Text('Delete account'),
+//                  shape: kButtonShape,
+//                  color: Colors.red,
+//                  onPressed: () {
+//                    Navigator.pushNamed(context, '/delete');
+//                  },
+//                ),
+//              ),
+//            ),
           ],
         ),
         colour: kActiveCardColour,
