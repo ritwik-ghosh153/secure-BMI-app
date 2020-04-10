@@ -14,6 +14,11 @@ import 'buttons.dart';
 enum Gender { Male, Female }
 
 class InputPage extends StatefulWidget {
+
+  String id;
+  InputPage({this.id});
+
+
   @override
   _InputPageState createState() => _InputPageState();
 }
@@ -90,7 +95,7 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-//          Text('Logged in as '+_currentUser.email, textAlign: TextAlign.center,),
+          Text('Logged in as '+widget.id, textAlign: TextAlign.center,),
           Expanded(
             child: Row(
               children: <Widget>[

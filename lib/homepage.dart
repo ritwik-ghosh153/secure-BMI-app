@@ -1,3 +1,4 @@
+import 'package:crud_app/bmi.dart';
 import 'package:crud_app/constants.dart';
 import 'package:crud_app/reusable_card.dart';
 import 'package:crud_app/textInnput.dart';
@@ -10,6 +11,20 @@ class HomePage extends StatelessWidget {
   final TextInput _pass = TextInput(passwordType: true, placeholder: 'Enter your password',);
 
   final _auth = FirebaseAuth.instance;
+  FirebaseUser _currentUser;
+
+  void getCurrentUser() async{
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        _currentUser = user;
+      }
+    }
+    catch(e){
+      print(e);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +86,11 @@ class HomePage extends StatelessWidget {
                             if(user!=null) {
                               Navigator.pop(context);
                               Navigator.pushNamed(context, '/home');
-                              Navigator.pushNamed(context, '/bmi');
+                              await getCurrentUser();
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => InputPage(id: _currentUser.email)
+
+                              ));
                             }
                           }
                           catch(e)
