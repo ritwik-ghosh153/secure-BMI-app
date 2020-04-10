@@ -2,11 +2,11 @@ import 'package:crud_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'reusable_card.dart';
 import 'buttons.dart';
-import 'bmiCalculator.dart';
 
 
 class Results extends StatelessWidget {
 
+  ///class variables
   final String bmi;
   final String result;
   final String interpretation;
@@ -20,7 +20,7 @@ class Results extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI', style: kAppBarStyle, ),
+        title: Text('BMI', style: kAppBarStyle,),
       ),
       body: Column(
         children: <Widget>[

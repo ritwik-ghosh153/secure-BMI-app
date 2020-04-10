@@ -75,7 +75,7 @@ class _InputPageState extends State<InputPage> {
       _previousBmi='No BMI calculated earlier';
     }
   }
-  ///widgeg tre
+  ///widget tree
 
   @override
   Widget build(BuildContext context) {
@@ -322,6 +322,7 @@ class _InputPageState extends State<InputPage> {
             ),
             BottomButton(title: 'CALCULATE BMI',
                 ontap: () async{
+              ///gets current user
               await fetch();
               BmiCalculator calc= BmiCalculator(height: this.height, weight: this.weight);
               String currentBmi=calc.calculate();
@@ -329,6 +330,7 @@ class _InputPageState extends State<InputPage> {
                 'bmi':currentBmi,
                 'user':_currentUser.email
               });
+              ///sends data to the results pahe for displaying
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) => Results(
                   bmi:currentBmi,

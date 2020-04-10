@@ -8,11 +8,11 @@ class TextInput extends StatefulWidget {
 
   TextInput({@required this.passwordType, @required this.placeholder});
 
-  String getText() {
+  String getText() {///getter method for text
     return _myController.text;
   }
 
-  TextEditingController getController() {
+  TextEditingController getController() {///getter method for text controller
     return _myController;
   }
 
@@ -26,7 +26,7 @@ class _TextInputState extends State<TextInput> {
 
 
   @override
-  void dispose() {
+  void dispose() {///disposing text controller
     // Clean up the controller when the widget is disposed.
     widget._myController.dispose();
     super.dispose();
