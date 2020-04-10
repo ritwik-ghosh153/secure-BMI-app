@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud_app/bmiCalculator.dart';
 import 'package:crud_app/results.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,16 +24,21 @@ class _InputPageState extends State<InputPage> {
   int weight=60;
   int age=20;
   Gender selectedGender;
+  bool hasPrevious=false;
+  String _previousBmi;
+  var bmi;
 
   @override
   void initState(){
     super.initState();
-    getCurrentUSer();
+    getCurrentUser();
   }
 
+  final _firestore= Firestore.instance;
   FirebaseUser _currentUser;
   final _auth = FirebaseAuth.instance;
-  void getCurrentUSer() async{
+
+  void getCurrentUser() async{
     try {
       final user = await _auth.currentUser();
       if (user != null) {
@@ -47,6 +53,24 @@ class _InputPageState extends State<InputPage> {
     }
   }
 
+  void fetch() async{
+    final bmis= await _firestore.collection('bmis').getDocuments();
+    for(bmi in bmis.documents)
+      {
+        if(bmi.data['user']==_currentUser.email) {
+          hasPrevious=true;
+          _previousBmi=bmi.data['bmi'];
+          print(_previousBmi);
+          break;
+        }
+      }
+    if(!hasPrevious){
+      _previousBmi='You have not calculated your BMI earlier';
+      print(_previousBmi);
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -57,6 +81,11 @@ class _InputPageState extends State<InputPage> {
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.close, color: Colors.white,),
+              onPressed: (){
+                fetch();
+                _auth.signOut();
+                Navigator.pop(context);
+              },
             )
           ],
       ),
@@ -229,11 +258,17 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           BottomButton(title: 'CALCULATE BMI',
-              ontap: (){
+              ontap: () async{
+            await fetch();
             BmiCalculator calc= BmiCalculator(height: this.height, weight: this.weight);
+            String currentBmi=calc.calculate();
+            _firestore.collection('bmis').document(_currentUser.email).setData({
+              'bmi':currentBmi,
+              'user':_currentUser.email
+            });
             Navigator.push(context, MaterialPageRoute(
               builder: (context) => Results(
-                bmi:calc.calculate(),
+                bmi:currentBmi,
                 result: calc.getResult(),
                 interpretation: calc.getInterpretation(),
               )

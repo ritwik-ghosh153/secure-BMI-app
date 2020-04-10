@@ -3,7 +3,6 @@ import 'package:crud_app/reusable_card.dart';
 import 'package:crud_app/textInnput.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatelessWidget {

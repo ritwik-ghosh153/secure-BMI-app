@@ -11,6 +11,7 @@ class Results extends StatelessWidget {
   final String result;
   final String interpretation;
 
+
   Results({this.bmi, this.result, this.interpretation});
 
   @override
