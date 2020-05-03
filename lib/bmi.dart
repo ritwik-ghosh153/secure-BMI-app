@@ -62,7 +62,7 @@ class _InputPageState extends State<InputPage> {
   }
 
   void fetch() async{
-    final bmis= await _firestore.collection('bmis').getDocuments();
+    final bmis= await _firestore.collection(_currentUser.email).getDocuments();
     for(bmi in bmis.documents)
       {
         if(bmi.data['user']==_currentUser.email) {
@@ -326,7 +326,7 @@ class _InputPageState extends State<InputPage> {
               await fetch();
               BmiCalculator calc= BmiCalculator(height: this.height, weight: this.weight);
               String currentBmi=calc.calculate();
-              _firestore.collection('bmis').document(_currentUser.email).setData({
+              _firestore.collection(_currentUser.email).document('hello').setData({
                 'bmi':currentBmi,
                 'user':_currentUser.email
               });
@@ -339,7 +339,7 @@ class _InputPageState extends State<InputPage> {
                   previousBmi: _previousBmi,
                   //deletion
                   onpress: (){
-                    _firestore.collection('bmis').document(_currentUser.email).delete();
+                    _firestore.collection(_currentUser.email).document('hello').delete();
                     Navigator.pop(context);
                   },
                 )
